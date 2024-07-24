@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext, createContext, useEffect, useState } from "react";
+import { useContext, createContext, useEffect, useState, memo } from "react";
 import { faker } from "@faker-js/faker";
 import { PostProvider, usePosts } from "./PostContext";
 import Test from './Test.js';
@@ -42,7 +42,7 @@ function App() {
   );
 }
 
-function Header() {
+const Header = memo(function Header() {
   const { onClearPosts } = usePosts();
   return (
     <header>
@@ -56,7 +56,7 @@ function Header() {
       </div>
     </header>
   );
-}
+})
 
 function SearchPosts() {
   const { searchQuery, setSearchQuery } = usePosts();
@@ -75,7 +75,7 @@ function Results() {
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main() {
+const Main =memo(function Main() {
   // const {posts , onAddPost}= usePosts();
   return (
     <main>
@@ -83,7 +83,7 @@ function Main() {
       <Posts />
     </main>
   );
-}
+})
 
 function Posts() {
   const { posts } = usePosts();
